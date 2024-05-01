@@ -17,8 +17,11 @@ class TTT {
     Screen.initialize(3, 3);
     Screen.setGridlines(true);
 
-    // Replace this with real commands
-    Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
+    // Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
+    Screen.addCommand('up', 'Up', this.cursor.up);
+    Screen.addCommand('left', 'Left', this.cursor.left);
+    Screen.addCommand('right', 'Right', this.cursor.right);
+    Screen.addCommand('down', 'Down', this.cursor.down);
 
     Screen.render();
   }
@@ -54,11 +57,9 @@ class TTT {
       }
     }
     return 'T';
-    // Return 'O' if player O wins
-    // Return 'T' if the game is a tie
-    // Return false if the game has not ended
-
   }
+
+
 
   static endGame(winner) {
     if (winner === 'O' || winner === 'X') {
