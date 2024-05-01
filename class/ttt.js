@@ -22,8 +22,35 @@ class TTT {
     Screen.addCommand('left', 'Left', this.cursor.left);
     Screen.addCommand('right', 'Right', this.cursor.right);
     Screen.addCommand('down', 'Down', this.cursor.down);
+    Screen.addCommand('place', 'Place move', this.placeMove.bind(this));
+
 
     Screen.render();
+  }
+
+  placeMove() {
+    const row = this.cursor.row;
+    const col = this.cursor.col;
+
+    // Check if the selected cell is empty
+    if (this.grid[row][col] === ' ') {
+      // Place the current player's mark
+      this.grid[row][col] = this.playerTurn;
+      Screen.setGrid(row, col, this.playerTurn);
+
+      // Switch turns
+      this.playerTurn = this.playerTurn === 'X' ? 'O' : 'X';
+
+      // Check for win or tie after placing the move
+      const winner = TTT.checkWin(this.grid);
+      if (winner) {
+        this.endGame(winner);
+      }
+    } else {
+      // Display a message if the cell is occupied
+      Screen.setMessage("This cell is already occupied. Try again!");
+      Screen.render();
+    }
   }
 
   // Remove this
