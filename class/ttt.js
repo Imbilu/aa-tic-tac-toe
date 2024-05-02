@@ -17,12 +17,14 @@ class TTT {
     Screen.initialize(3, 3);
     Screen.setGridlines(true);
 
+    Screen.setBackgroundColor(0, 0, 'yellow');
+
     // Screen.addCommand('t', 'test command (remove)', TTT.testCommand);
-    Screen.addCommand('up', 'Up', this.cursor.up);
-    Screen.addCommand('left', 'Left', this.cursor.left);
-    Screen.addCommand('right', 'Right', this.cursor.right);
-    Screen.addCommand('down', 'Down', this.cursor.down);
-    Screen.addCommand('place', 'Place move', this.placeMove.bind(this));
+    Screen.addCommand('up', 'Up', this.cursor.up.bind(this.cursor));
+    Screen.addCommand('left', 'Left', this.cursor.left.bind(this.cursor));
+    Screen.addCommand('right', 'Right', this.cursor.right.bind(this.cursor));
+    Screen.addCommand('down', 'Down', this.cursor.down.bind(this.cursor));
+    Screen.addCommand('return', 'Place move', this.placeMove.bind(this));
 
 
     Screen.render();
